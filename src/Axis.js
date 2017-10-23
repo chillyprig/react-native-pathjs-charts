@@ -149,7 +149,8 @@ export default class Axis extends Component {
 
     const ticks =_.map(axis.ticks, function (c, i) {
       const label = options.labelFunction !== undefined? options.labelFunction.apply(this, [c]) : c
-      let scaleBase = isNaN(c) ? i : c
+      let scaleBase = isNaN(c) ? i : c;
+      if (horizontal && options.scaleToAmountOfX) scaleBase = i;
       let gxy = horizontal ? [scale(scaleBase),chartArea.y.min]:[chartArea.x.min,scale(scaleBase)]
 
       let returnValue
