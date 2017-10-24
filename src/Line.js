@@ -109,6 +109,7 @@ export default class LineChart extends Component {
     let lines = _.map(
       chart.curves,
       function(c, i) {
+        if (c.item[0].transparent) return null;
         const strokeWidthForCurve =
           (typeof strokeWidth === 'function' && strokeWidth(c, i)) || strokeWidth;
         const strokeDasharrayForCurve =
@@ -169,6 +170,7 @@ export default class LineChart extends Component {
       areas = _.map(
         chart.curves,
         function(c, i) {
+          if (c.item[0].transparent) return null;
           if (
             (typeof showAreas === 'function' && showAreas(c, i)) ||
             typeof showAreas === 'boolean'
@@ -199,6 +201,7 @@ export default class LineChart extends Component {
       regions = _.map(
         this.props.regions,
         function(c, i) {
+          if (c.item[0].transparent) return null;
           let x, y, height, width, y1, y2, labelX, labelY;
 
           let labelOffset = typeof c.labelOffset != 'undefined' ? c.labelOffset : {};
